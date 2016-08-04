@@ -13,15 +13,23 @@ function create(self,folder)
 
     % error screen null entry
     if nargin < 2     % chk number of inputs
-        folder = 1;   % default to making class folder
+        folder = 0;   % default to not creating folder
     end
-
-    if folder == 1 % add folder name for create
-        self.path = fullfile(self.path,self.name,[self.name self.ext]);
+    
+    % check folder boolean to add folder name for create
+    if folder == 1 
+        % add folder name to object path
+        self.path = fullfile(self.path,self.name);
     end
+    
+    % create folder if it doesn't exist
+    self.create_folder();
+    
+    % open for appending
+    fid = self.open('a');
         
-    % open file for appending
-    fid = fopen(self.fullname,'a');
+%     % open file for appending
+%     fid = fopen(self.fullname,'a');
 
     % ---- write contents ----
 
@@ -40,14 +48,12 @@ function create(self,folder)
     fprintf(fid,'%% author: %s\n',self.author);
     
     % create date
-    fprintf(fid,'%% create date: %s\n\n', char(datetime));
-    
+    fprintf(fid,'%% create date: %s\n', char(datetime));
     
     % body
     for ii = 1:5
-        fprintf(fid,'\t\n')
+        fprintf(fid,'\t\n');
     end
-   
     
     % end line
     fprintf(fid,'end\n');

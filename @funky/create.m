@@ -1,4 +1,3 @@
-function create(self,folder)
 %% create(folder) - automate standard function generation 
 % removes some boiler plate code 
 %
@@ -10,7 +9,7 @@ function create(self,folder)
 % * object file name used as class name
 % * class folder created in self.path and self.ext ignored     
 % * does not overwite - appends to end of file if exists
-
+function create(self,folder)
     % error screen null entry
     if nargin < 2     % chk number of inputs
         folder = 0;   % default to not creating folder
@@ -27,15 +26,9 @@ function create(self,folder)
     
     % open for appending
     fid = self.open('a');
-        
-%     % open file for appending
-%     fid = fopen(self.fullname,'a');
 
     % ---- write contents ----
 
-    % function definition
-    fprintf(fid,'function %s()\n', self.name);
-    
     % header
     fprintf(fid,'%%%% %s\n', self.name);
     
@@ -49,6 +42,9 @@ function create(self,folder)
     
     % create date
     fprintf(fid,'%% create date: %s\n', char(datetime));
+    
+    % function definition
+    fprintf(fid,'function %s()\n', self.name);
     
     % body
     for ii = 1:5

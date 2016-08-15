@@ -28,7 +28,10 @@ function create(self,folder)
     fid = self.open('a');
 
     % ---- write contents ----
-
+    
+    % function definition
+    fprintf(fid,'function %s()\n', self.name);
+    
     % header
     fprintf(fid,'%%%% %s\n', self.name);
     
@@ -43,8 +46,6 @@ function create(self,folder)
     % create date
     fprintf(fid,'%% create date: %s\n', char(datetime));
     
-    % function definition
-    fprintf(fid,'function %s()\n', self.name);
     
     % body
     for ii = 1:5

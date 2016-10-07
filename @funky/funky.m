@@ -36,11 +36,6 @@ classdef funky < file
             % ensure class extension is for m-file
             self.ext = '.m';
         end
-        
-        function edit(self)
-            % bring current file up in matlab editor
-            edit(self.fullname);
-        end
 
 	%% dependent methods
 
